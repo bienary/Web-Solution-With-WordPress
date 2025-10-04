@@ -33,3 +33,18 @@
 > Use RedHat OS for this project
 
 > **Note**: for Ubuntu server, when connecting to it via SSH/Putty or any other tool, we used ubuntu user, but for RedHat you will need to use ec2-user user. Connection string will look like ec2-user@<Public-IP>
+
+---
+
+## **Step 1: Setting Up the Web Server for WordPress Deployment**
+
+> Launch an EC2 instance that will serve as `Web Server`. Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
+
+> Attach all three volumes one by one to your Web Server EC2 instance.
+
+> Open up the Linux terminal to begin configuration
+
+> Use the `lsblk` command to list all block devices currently attached to the server. Identify the names of the newly added devices. In Linux, all block devices are represented as files under the `/dev/` directory. Verify the presence of the three newly created devices—typically named `xvdf`, `xvdg`, and `xvdh`—by running `ls /dev/` and confirming they appear in the listing.
+
+
+
