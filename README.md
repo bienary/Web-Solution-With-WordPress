@@ -40,11 +40,23 @@
 
 - Launch an EC2 instance that will serve as `Web Server`. Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
 
+<img width="1309" height="595" alt="Screenshot From 2025-10-07 23-00-34" src="https://github.com/user-attachments/assets/52b88dce-7d08-44de-af24-4e2f71cb410a" />
+
+<img width="1307" height="179" alt="Screenshot From 2025-10-07 23-02-37" src="https://github.com/user-attachments/assets/872be3c2-2d58-4fbd-b9a2-67cd0252eb75" />
+
+
 - Attach all three volumes one by one to your Web Server EC2 instance.
+
+<img width="1097" height="306" alt="Screenshot From 2025-10-07 23-20-16" src="https://github.com/user-attachments/assets/ad0b2457-a15c-42b3-bae8-179eb6387d42" />
+
+<img width="1321" height="541" alt="Screenshot From 2025-10-07 23-21-33" src="https://github.com/user-attachments/assets/5f084748-9550-4418-936c-57381c5af029" />
 
 - Open up the Linux terminal to begin configuration
 
 - Use the `lsblk` command to list all block devices currently attached to the server. Identify the names of the newly added devices. In Linux, all block devices are represented as files under the `/dev/` directory. Verify the presence of the three newly created devices—typically named `xvdf`, `xvdg`, and `xvdh`—by running `ls /dev/` and confirming they appear in the listing.
+
+<img width="1319" height="729" alt="Screenshot From 2025-10-07 23-48-28" src="https://github.com/user-attachments/assets/efe0cffb-0a1d-45b6-9058-feae9e594fcd" />
+
 - Use `df -h` command to see all mounts and free space on your server.
 - Use `gdisk` utility to create a single partition on each of the 3 disks.
 
@@ -53,6 +65,9 @@ sudo gdisk /dev/xvdf
 ```
 
 - Use the `lsblk` utility to verify the newly created partitions on each of the three attached disks.
+
+<img width="1319" height="309" alt="Screenshot From 2025-10-08 00-09-41" src="https://github.com/user-attachments/assets/c47451f1-f30f-45b7-9372-8d998a6f1832" />
+
 - Install `lvm2` package using sudo yum install lvm2. Run sudo lvmdiskscan command to check for available partitions.
 
 > Note: Previously, in Ubuntu we used apt command to install packages, in RedHat/CentOS a different package manager is used, so we shall use yum command instead.
