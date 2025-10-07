@@ -36,7 +36,7 @@
 
 ---
 
-## **Step 1: Setting Up the Web Server for WordPress Deployment**
+## 🎯**Step 1: Setting Up the Web Server for WordPress Deployment**
 
 - Launch an EC2 instance that will serve as `Web Server`. Create 3 volumes in the same AZ as your Web Server EC2, each of 10 GiB.
 
@@ -160,13 +160,13 @@ sudo systemctl daemon-reload
 
 ---
 
-## **Step 2: Database Server Preparation**
+## 🎯**Step 2: Database Server Preparation**
 
 - Deploy a second RedHat EC2 instance designated as the `DB Server`. Repeat the steps used for the Web Server setup, but create a volume named `db-lv` instead of `apps-lv`, and mount it to the `/db` directory rather than `/var/www/html/`.
 
 ---
 
-## **Step 3: Configure and Install WordPress on Your Web Server EC2 Instance**
+## 🎯**Step 3: Configure and Install WordPress on Your Web Server EC2 Instance**
 
 - Update the repository
 ```
@@ -255,7 +255,7 @@ sudo setsebool -P httpd_can_network_connect=1
 
 ---
 
-## **Step 4: MySQL Installation on the EC2 Database Server**
+## 🎯**Step 4: MySQL Installation on the EC2 Database Server**
 
 ```
 sudo yum update
@@ -279,7 +279,7 @@ sudo systemctl enable mysqld
 
 ---
 
-## **Step 5 — Database Configuration for WordPress Deployment**
+## 🎯**Step 5 — Database Configuration for WordPress Deployment**
 
 ```
 sudo mysql
@@ -293,7 +293,7 @@ exit
 
 ---
 
-## **Step 6 — Configure WordPress to Connect to the Remote Database**
+## 🎯**Step 6: Configure WordPress to Connect to the Remote Database**
 
 > `Note`: Open MySQL port 3306 on DB Server EC2. For extra security, you shall allow access to the DB server ONLY from your Web Server's IP address, so in the Inbound Rule configuration specify source as /32
 
@@ -316,5 +316,7 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 - Fill out your DB credentials:
 
 - If you see this message - it means your WordPress has successfully connected to your remote MySQL database.
+
+---
 
 ## **CONGRATULATIONS!**
