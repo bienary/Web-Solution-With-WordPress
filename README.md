@@ -58,26 +58,35 @@
 <img width="1319" height="729" alt="Screenshot From 2025-10-07 23-48-28" src="https://github.com/user-attachments/assets/efe0cffb-0a1d-45b6-9058-feae9e594fcd" />
 
 - Use `df -h` command to see all mounts and free space on your server.
-- Use `gdisk` utility to create a single partition on each of the 3 disks.
+- Use `fdisk` utility to create a single partition on each of the 3 disks.
 
 ```
-sudo gdisk /dev/xvdf
+sudo fdisk /dev/nvme1n1
 ```
+
+<img width="1295" height="552" alt="Screenshot From 2025-10-07 23-54-59" src="https://github.com/user-attachments/assets/3cd2ee72-7af0-4bdb-b5cf-0558f2debed0" />
 
 - Use the `lsblk` utility to verify the newly created partitions on each of the three attached disks.
 
 <img width="1319" height="309" alt="Screenshot From 2025-10-08 00-09-41" src="https://github.com/user-attachments/assets/c47451f1-f30f-45b7-9372-8d998a6f1832" />
 
-- Install `lvm2` package using sudo yum install lvm2. Run sudo lvmdiskscan command to check for available partitions.
+- Install `lvm2` package using
+```
+sudo yum install lvm2
+```
+- Run `sudo lvmdiskscan` command to check for available partitions.
+
+<img width="1315" height="275" alt="image" src="https://github.com/user-attachments/assets/75ad0337-6113-42f6-875b-5d1cd31894e2" />
+
 
 > Note: Previously, in Ubuntu we used apt command to install packages, in RedHat/CentOS a different package manager is used, so we shall use yum command instead.
 
 - Use `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM.
 
 ```
-sudo pvcreate /dev/xvdf1
-sudo pvcreate /dev/xvdg1
-sudo pvcreate /dev/xvdh1
+sudo pvcreate /dev/nvme1n1p1
+sudo pvcreate /dev/nvme2n1p1
+sudo pvcreate /dev/nvme3n1p1
 ```
 
 - Verify that your Physical volume has been created successfully by running:
