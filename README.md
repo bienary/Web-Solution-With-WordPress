@@ -346,31 +346,31 @@ sudo yum -y update
 sudo yum -y install wget httpd php php-mysqlnd php-fpm php-json
 ```
 
-- Start Apache
-```
-sudo systemctl enable httpd sudo systemctl start httpd
-```
+<img width="1317" height="636" alt="image" src="https://github.com/user-attachments/assets/01dc2500-b6ad-422e-b9de-85d15d5456d2" />
+
 
 - Install PHP and it's dependencies
 ```
-sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
 ```
 
 ```
-sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
+sudo yum install yum-utils http://rpms.remirepo.net/enterprise/remi-release-9.rpm
 ```
-```
-sudo yum module list php
-```
-```
-sudo yum module reset php
-```
-```
-sudo yum module enable php:remi-7.4
-```
+
 ```
 sudo yum install php php-opcache php-gd php-curl php-mysqlnd
 ```
+
+<img width="1317" height="636" alt="image" src="https://github.com/user-attachments/assets/c001a443-7e05-49c0-938e-e07af13eb161" />
+
+- Verify the PHP version using `php -v`
+
+<img width="999" height="160" alt="image" src="https://github.com/user-attachments/assets/74f65d11-5261-48a6-9e0b-01dbf36102f3" />
+
+
+- Start and enable PHP-FPM:
+
 ```
 sudo systemctl start php-fpm
 ```
@@ -380,6 +380,9 @@ sudo systemctl enable php-fpm
 ```
 setsebool -P httpd_execmem 1
 ```
+
+<img width="1297" height="293" alt="image" src="https://github.com/user-attachments/assets/42d39899-2643-4a14-9b0d-e7f7c16d2226" />
+
 
 - Restart Apache
 
