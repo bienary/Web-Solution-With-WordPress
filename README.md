@@ -94,16 +94,20 @@ sudo pvcreate /dev/nvme3n1p1
 sudo pvs
 ```
 
+<img width="1319" height="306" alt="image" src="https://github.com/user-attachments/assets/c5d944ab-097b-41a4-8ec6-d5a6aa9e8ec2" />
+
 - Use `vgcreate` utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
 
 ```
-sudo vgcreate webdata-vg /dev/xvdh1 /dev/xvdg1 /dev/xvdf1
+sudo vgcreate webdata-vg /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1
 ```
 
 - Verify that your VG has been created successfully by running :
 ```
 sudo vgs
 ```
+
+<img width="1308" height="162" alt="image" src="https://github.com/user-attachments/assets/d1290c27-7c2d-4f46-a4eb-3e3867b45638" />
 
 - Use `lvcreate` utility to create 2 logical volumes. apps-lv (Use half of the PV size), and logs-lv Use the remaining space of the PV size. 
 
@@ -119,11 +123,18 @@ sudo lvcreate -n logs-lv -L 14G webdata-vg
 sudo lvs
 ```
 
+<img width="1303" height="209" alt="image" src="https://github.com/user-attachments/assets/622d2360-6b8b-4aed-8e98-369aa351c3a0" />
+
 - Verify the entire setup
 ```
 sudo vgdisplay -v #view complete setup - VG, PV, and LV
 sudo lsblk
 ```
+
+<img width="1304" height="479" alt="image" src="https://github.com/user-attachments/assets/94b21f2d-baad-4871-bca8-2cb6e8c1b447" />
+
+<img width="1307" height="405" alt="image" src="https://github.com/user-attachments/assets/4c94de3b-c435-44ae-ae5d-384136822b9a" />
+
 
 > Use `mkfs.ext4` to format the logical volumes with ext4 filesystem.
 
@@ -131,6 +142,8 @@ sudo lsblk
 sudo mkfs -t ext4 /dev/webdata-vg/apps-lv
 sudo mkfs -t ext4 /dev/webdata-vg/logs-lv
 ```
+
+<img width="1301" height="557" alt="image" src="https://github.com/user-attachments/assets/c8e29024-a6a9-4fa2-aac5-0bc1952b314c" />
 
 - Create /var/www/html directory to store website files
 ```
@@ -168,9 +181,13 @@ sudo rsync -av /home/recovery/logs/ /var/log
 sudo blkid
 ```
 
+<img width="1323" height="299" alt="image" src="https://github.com/user-attachments/assets/7babc5bf-0ef0-49e9-8122-4905e2410d1c" />
+
 ```
 sudo vi /etc/fstab
 ```
+
+<img width="1128" height="157" alt="image" src="https://github.com/user-attachments/assets/62689cd2-51a6-494e-abe5-8ec90b899b75" />
 
 > Update `/etc/fstab` in this format using your own UUID and rememeber to remove the leading and ending quotes.
 
@@ -182,11 +199,17 @@ sudo systemctl daemon-reload
 
 - Verify your setup by running `df -h`, output must look like this:
 
+<img width="1214" height="369" alt="image" src="https://github.com/user-attachments/assets/39ca032e-12f9-4326-a3f7-5e9b2a1fe3dd" />
+
 ---
 
 ## 🎯**Step 2: Database Server Preparation**
 
 - Deploy a second RedHat EC2 instance designated as the `DB Server`. Repeat the steps used for the Web Server setup, but create a volume named `db-lv` instead of `apps-lv`, and mount it to the `/db` directory rather than `/var/www/html/`.
+
+<img width="1107" height="200" alt="image" src="https://github.com/user-attachments/assets/022af968-53e2-448d-93bb-fac83521fe41" />
+
+<img width="1105" height="263" alt="image" src="https://github.com/user-attachments/assets/2281cad8-36e0-4860-a9ed-d7460b7f3f38" />
 
 ---
 
