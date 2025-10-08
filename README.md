@@ -228,6 +228,110 @@ lsblk
 ```
 
 <img width="1227" height="306" alt="image" src="https://github.com/user-attachments/assets/fdad76e0-b109-466b-bbcd-ec5eee4e92a7" />
+
+
+- Install `lvm2` package using
+
+```
+sudo yum install lvm2
+```
+- Run `sudo lvmdiskscan` command to check for available partitions.
+
+<img width="1227" height="306" alt="image" src="https://github.com/user-attachments/assets/189cbb0b-e6d2-42fb-b00a-43c8adb98e47" />
+
+
+- Use `pvcreate` utility to mark each of 3 disks as physical volumes (PVs) to be used by LVM.
+
+```
+sudo pvcreate /dev/nvme1n1p1
+sudo pvcreate /dev/nvme2n1p1
+sudo pvcreate /dev/nvme3n1p1
+```
+
+- Verify that your Physical volume has been created successfully by running:
+```
+sudo pvs
+```
+
+- Use `vgcreate` utility to add all 3 PVs to a volume group (VG). Name the VG webdata-vg
+
+```
+sudo vgcreate database-vg /dev/nvme1n1p1 /dev/nvme2n1p1 /dev/nvme3n1p1
+```
+
+- Verify that your VG has been created successfully by running :
+```
+sudo vgs
+```
+<img width="1244" height="420" alt="image" src="https://github.com/user-attachments/assets/cba9189c-7b8b-450e-a935-df4b07bf8be4" />
+
+
+- Use lvcreate to create a single LV for the database:
+
+```
+sudo lvcreate -n db-lv -L 14G database-vg
+```
+
+- Verify that your Logical Volume has been created successfully by running:
+```
+sudo lvs
+```
+<img width="1249" height="135" alt="image" src="https://github.com/user-attachments/assets/90bbfccd-80c8-4daa-aaf1-a248d40d162f" />
+
+
+- Verify the entire setup
+```
+sudo vgdisplay -v #view complete setup - VG, PV, and LV
+sudo lsblk
+```
+
+<img width="1268" height="351" alt="image" src="https://github.com/user-attachments/assets/ba9444ec-a935-443e-b608-d77f4e970bc5" />
+
+> Use `mkfs.ext4` to format the logical volumes with ext4 filesystem.
+
+- Create an ext4 filesystem on the LV
+```
+sudo mkfs.ext4 /dev/database-vg/db-lv
+```
+
+- Create the mount point directory
+```
+sudo mkdir -p /db
+```
+
+- Mount the filesystem
+```
+sudo mount /dev/database-vg/db-lv /db
+```
+
+<img width="1268" height="351" alt="image" src="https://github.com/user-attachments/assets/0492ce0c-dd5b-4a7b-a3b8-4bbf5410c6d6" />
+
+
+- Update `/etc/fstab` file so that the mount configuration will persist after restart of the server.
+> The UUID of the device will be used to update the /etc/fstab file;
+```
+sudo blkid
+```
+
+<img width="1263" height="246" alt="image" src="https://github.com/user-attachments/assets/9c073541-1beb-4bf7-a63a-33d93c9e828d" />
+
+
+```
+sudo vi /etc/fstab
+```
+
+<img width="1270" height="143" alt="image" src="https://github.com/user-attachments/assets/53c0a00d-8c15-49f8-9a4b-4b5ef98df0d0" />
+
+- Test the configuration and reload the daemon
+```
+sudo mount -a
+sudo systemctl daemon-reload
+```
+
+- Verify your setup by running `df -h`, output must look like this:
+
+<img width="1270" height="363" alt="image" src="https://github.com/user-attachments/assets/fef50ec9-fdf2-4041-a7b0-30225f817fce" />
+
 ---
 
 ## 🎯**Step 3: Configure and Install WordPress on Your Web Server EC2 Instance**
