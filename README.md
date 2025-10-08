@@ -62,6 +62,8 @@
 
 ```
 sudo fdisk /dev/nvme1n1
+sudo fdisk /dev/nvme2n1
+sudo fdisk /dev/nvme3n1
 ```
 
 <img width="1295" height="552" alt="Screenshot From 2025-10-07 23-54-59" src="https://github.com/user-attachments/assets/3cd2ee72-7af0-4bdb-b5cf-0558f2debed0" />
@@ -211,6 +213,21 @@ sudo systemctl daemon-reload
 
 <img width="1105" height="263" alt="image" src="https://github.com/user-attachments/assets/2281cad8-36e0-4860-a9ed-d7460b7f3f38" />
 
+```
+sudo fdisk /dev/nvme1n1
+sudo fdisk /dev/nvme2n1
+sudo fdisk /dev/nvme3n1
+```
+
+<img width="1242" height="549" alt="image" src="https://github.com/user-attachments/assets/45b9bf88-47da-4a0a-96f5-071bd3528aca" />
+
+- Verify the new partitions:
+
+```
+lsblk
+```
+
+<img width="1227" height="306" alt="image" src="https://github.com/user-attachments/assets/fdad76e0-b109-466b-bbcd-ec5eee4e92a7" />
 ---
 
 ## 🎯**Step 3: Configure and Install WordPress on Your Web Server EC2 Instance**
