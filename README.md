@@ -457,6 +457,8 @@ sudo systemctl start mariadb
 sudo systemctl status mariadb
 ```
 
+<img width="1256" height="502" alt="image" src="https://github.com/user-attachments/assets/731948f6-80e8-4fb1-ad41-5eea79f4714b" />
+
 ---
 
 ## 🎯**Step 5 — Database Configuration for WordPress Deployment**
@@ -471,11 +473,15 @@ SHOW DATABASES;
 exit
 ```
 
+<img width="1236" height="693" alt="image" src="https://github.com/user-attachments/assets/85ae3218-b917-44f6-912e-a1a69ded8e4e" />
+
 ---
 
 ## 🎯**Step 6: Configure WordPress to Connect to the Remote Database**
 
 > `Note`: Open MySQL port 3306 on DB Server EC2. For extra security, you shall allow access to the DB server ONLY from your Web Server's IP address, so in the Inbound Rule configuration specify source as /32
+
+<img width="1317" height="609" alt="Screenshot From 2025-10-18 13-53-59" src="https://github.com/user-attachments/assets/ac1b0868-7d2b-4065-bf1d-e7dd8d234879" />
 
 
 - Install `MySQL` client and test that you can connect from your `Web Server` to your `DB server` by using `mysql-client`
