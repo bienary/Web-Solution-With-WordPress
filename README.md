@@ -404,13 +404,17 @@ sudo wget http://wordpress.org/latest.tar.gz
 sudo tar -xzvf latest.tar.gz
 ```
 ```
-sudo rm -rf latest.tar.gz
+cd wordpress
 ```
 ```
-cp wordpress/wp-config-sample.php wordpress/wp-config.php
+sudo cp wp-config-sample.php wp-config.php
 ```
 ```
-cp -R wordpress /var/www/html/
+cd ..
+```
+
+```
+sudo cp -R wordpress/. /var/www/html/
 ```
 
 - Configure SELinux Policies
@@ -424,28 +428,33 @@ sudo chcon -t httpd_sys_rw_content_t /var/www/html/wordpress -R
 sudo setsebool -P httpd_can_network_connect=1
 ```
 
+- Restart Apache
+```
+sudo systemctl restart httpd
+```
+
 ---
 
-## 🎯**Step 4: MySQL Installation on the EC2 Database Server**
+## 🎯**Step 4: MySQL(MariaDB) Installation on the EC2 Database Server**
 
 ```
-sudo yum update
-sudo yum install mysql-server
-```
-
-- Check that the MySQL service is active by running
-```
-sudo systemctl status mysqld
-```
-
-- If the service is not running, restart it using
-```
-sudo systemctl restart mysqld
+sudo yum update -y
+sudo dnf install -y mariadb-server
 ```
 
 - Enable it to start automatically on boot with
 ```
-sudo systemctl enable mysqld
+sudo systemctl enable mariadb
+```
+
+- If the service is not running, restart it using
+```
+sudo systemctl start mariadb
+```
+
+- Check that the MySQL(MariaDB) service is active by running
+```
+sudo systemctl status mariadb
 ```
 
 ---
