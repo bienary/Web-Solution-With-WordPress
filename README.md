@@ -493,15 +493,18 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 
 - Verify if you can successfully execute `SHOW DATABASES`; command and see a list of existing databases.
 
-- Change permissions and configuration so `Apache` could use `WordPress`:
+<img width="1290" height="468" alt="image" src="https://github.com/user-attachments/assets/1702637b-3216-47f9-9cf6-cb948141eab5" />
 
-- Enable TCP port 80 in Inbound Rules configuration for your `Web Server EC2` (enable from everywhere 0.0.0.0/0 or from your workstation's IP)
 
 - Try to access from your browser the link to your WordPress `http://<Web-Server-Public-IP-Address>/wordpress/`
 
+<img width="1318" height="695" alt="image" src="https://github.com/user-attachments/assets/2d6d20a5-5e70-4347-95dc-9c61aced4d4e" />
+
+
 - Fill out your DB credentials:
 
-- If you see this message - it means your WordPress has successfully connected to your remote MySQL database.
+<img width="1292" height="678" alt="image" src="https://github.com/user-attachments/assets/08b46d81-8436-4698-9a6e-2c74ba025a2c" />
+
 
 ---
 
