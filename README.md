@@ -511,3 +511,6 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 ---
 
 ## **CONGRATULATIONS!**
+> Our WordPress site has been successfully set up on AWS with a secure and scalable architecture—featuring separate web and database servers.
+
+Everything is now in place. Our site is live and ready for content creation and customization.
