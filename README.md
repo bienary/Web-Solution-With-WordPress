@@ -506,6 +506,8 @@ sudo mysql -u admin -p -h <DB-Server-Private-IP-address>
 <img width="1292" height="678" alt="image" src="https://github.com/user-attachments/assets/08b46d81-8436-4698-9a6e-2c74ba025a2c" />
 
 
+<img width="1321" height="687" alt="image" src="https://github.com/user-attachments/assets/a99506da-d501-4eb8-84b2-a9e58ba0ae89" />
+
 ---
 
 ## **CONGRATULATIONS!**
